@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
   Icon,
@@ -15,7 +14,8 @@ import {
   Sidebar,
   Visibility
 } from "semantic-ui-react";
-import FormExampleInverted from "./formExampleInverted";
+import HomepageHeading from "./m_inputarea";
+import Board from "./board";
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -30,30 +30,6 @@ const getWidth = () => {
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
-const HomepageHeading = ({ mobile }) => (
-  <Container text>
-    <Header
-      as="h2"
-      content="목표를 입력하세요."
-      inverted
-      style={{
-        fontSize: mobile ? "2em" : "4em",
-        fontWeight: "normal",
-        marginBottom: 0,
-        marginTop: mobile ? "1.5em" : "3em"
-      }}
-    />
-    <FormExampleInverted />
-    <Button primary size="huge">
-      Get Started
-      <Icon name="right arrow" />
-    </Button>
-  </Container>
-);
-
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool
-};
 
 /* Heads up!
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
@@ -61,6 +37,10 @@ HomepageHeading.propTypes = {
  */
 class DesktopContainer extends Component {
   state = {};
+
+  example = () => {
+    alert();
+  };
 
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
@@ -111,7 +91,11 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>
             </Menu>
-            <HomepageHeading />
+            <HomepageHeading example={this.example} />
+            {/* <Button primary size="huge" onClick={this.example}>
+              Get Started
+              <Icon name="right arrow" />
+            </Button> */}
           </Segment>
         </Visibility>
 
@@ -270,41 +254,7 @@ const HomepageLayout = () => (
       </Grid>
     </Segment>
 
-    <Segment style={{ padding: "8em 0em" }} vertical>
-      <Container text>
-        <Header as="h3" style={{ fontSize: "2em" }}>
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        <p style={{ fontSize: "1.33em" }}>
-          Instead of focusing on content creation and hard work, we have learned
-          how to master the art of doing nothing by providing massive amounts of
-          whitespace and generic content that can seem massive, monolithic and
-          worth your attention.
-        </p>
-        <Button as="a" size="large">
-          Read More
-        </Button>
-
-        <Divider
-          as="h4"
-          className="header"
-          horizontal
-          style={{ margin: "3em 0em", textTransform: "uppercase" }}
-        ></Divider>
-
-        <Header as="h3" style={{ fontSize: "2em" }}>
-          Did We Tell You About Our Bananas?
-        </Header>
-        <p style={{ fontSize: "1.33em" }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur
-          filler content, but it's really true. It took years of gene splicing
-          and combinatory DNA research, but our bananas can really dance.
-        </p>
-        <Button as="a" size="large">
-          I'm Still Quite Interested
-        </Button>
-      </Container>
-    </Segment>
+    <Board />
 
     <Segment inverted vertical style={{ padding: "5em 0em" }}>
       <Container>
