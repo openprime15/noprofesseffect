@@ -1,10 +1,32 @@
 import React, { Component } from "react";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+const headers = { withCredentials: true };
 
 class Contact extends Component {
   state = {
     name: ""
   };
-  memberInsert = () => {};
+  memberInsert = () => {
+    const send_param = {
+      headers,
+      name: this.nameE.value,
+      email: this.emailE_Contact.value,
+      pw: this.pwE_Contact.value,
+      comments: this.commentsE.value
+    };
+
+    axios
+      .post("http://localhost:8080/member/insert", send_param)
+      .then(returnData => {
+        alert(returnData.data.message);
+        window.location.href = "/login#/login";
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
